@@ -82,6 +82,8 @@ class ToDoApp(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     todo_app = ToDoApp()
+    if not os.path.exists("data"):
+        os.mkdir("data")
     if os.path.exists("data/tasks.pkl"):
         todo_app.load_list_from_file()
     app.aboutToQuit.connect(todo_app.save_list_to_file)
