@@ -44,10 +44,10 @@ class ToDoApp(QMainWindow):
     def add_task(self):
         text = self.task_input.text()
         if text:
-            item = QListWidgetItem(text)  # Create a QListWidgetItem with the task text
-            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)  # Allow item to be checkable
-            item.setCheckState(Qt.Unchecked)  # Set the initial check state to unchecked
-            self.task_list.addItem(item)  # Add the item to the list widget
+            item = QListWidgetItem(text)
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
+            item.setCheckState(Qt.Unchecked)
+            self.task_list.addItem(item)
             self.task_input.clear()
 
     def delete_task(self):
@@ -56,12 +56,12 @@ class ToDoApp(QMainWindow):
             self.task_list.takeItem(self.task_list.row(item))
 
     def mark_completed(self):
-        selected_items = self.task_list.selectedItems()  # Get the selected items from the list widget
+        selected_items = self.task_list.selectedItems()
         for item in selected_items:
             if item.checkState() == Qt.Checked:
-                item.setCheckState(Qt.Unchecked)  # Mark item as unchecked (incompleted)
+                item.setCheckState(Qt.Unchecked)
             else:
-                item.setCheckState(Qt.Checked)  # Mark item as checked (completed)
+                item.setCheckState(Qt.Checked)
 
     def save_list_to_file(self):
         tasks = [(self.task_list.item(index).text(), self.task_list.item(index).checkState() == Qt.Checked)
